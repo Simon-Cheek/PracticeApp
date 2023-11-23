@@ -4,8 +4,15 @@ void main() => runApp(const MaterialApp(
       home: SimonCard(),
     ));
 
-class SimonCard extends StatelessWidget {
+class SimonCard extends StatefulWidget {
   const SimonCard({super.key});
+
+  @override
+  State<SimonCard> createState() => _SimonCardState();
+}
+
+class _SimonCardState extends State<SimonCard> {
+  int simonLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +23,15 @@ class SimonCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 66, 71, 74),
         elevation: 0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            simonLevel++;
+          });
+        },
+        backgroundColor: Colors.grey[800],
+        child: Icon(Icons.add),
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
@@ -105,7 +121,7 @@ class SimonCard extends StatelessWidget {
             ),
             SizedBox(height: 30.0),
             Text(
-              'CATS OR DOGS:',
+              'NUMBER OF TIMES PRESSED:',
               style: TextStyle(
                 color: Colors.grey,
                 letterSpacing: 2.0,
@@ -113,7 +129,7 @@ class SimonCard extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              'Cats',
+              '$simonLevel',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2.0,
