@@ -1,6 +1,6 @@
 # practice_app
 
-A new Flutter project.
+A new Flutter project that practices Front End principles of App Design in Flutter.
 
 ## Getting Started
 
