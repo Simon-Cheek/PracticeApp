@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore_for_file: prefer_const_constructors
 
 void main() => runApp(const MaterialApp(
       home: SimonCard(),
@@ -13,6 +14,25 @@ class SimonCard extends StatefulWidget {
 
 class _SimonCardState extends State<SimonCard> {
   int simonLevel = 0;
+  int petCounter = 0;
+  String petName = 'Cats';
+  String petReference = 'Assets/cats.jpeg';
+
+  void setPet() {
+    petCounter++;
+    if (petCounter % 2 == 0) {
+      setState(() {
+        petName = "Cats";
+        petReference = 'Assets/cats.jpeg';
+      });
+      ;
+    } else {
+      setState(() {
+        petName = "Dogs";
+        petReference = "Assets/dogs.jpeg";
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +45,9 @@ class _SimonCardState extends State<SimonCard> {
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            simonLevel++;
-          });
-        },
+        onPressed: setPet,
         backgroundColor: Colors.grey[800],
-        child: Icon(Icons.add),
+        child: Text('Pet'),
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
@@ -40,8 +56,12 @@ class _SimonCardState extends State<SimonCard> {
           children: [
             Center(
               child: CircleAvatar(
-                backgroundImage: AssetImage('Assets/Simon.jpg'),
-                radius: 40.0,
+                backgroundColor: Colors.white,
+                radius: 42.0,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('Assets/Simon.jpg'),
+                  radius: 40.0,
+                ),
               ),
             ),
             Divider(
@@ -85,7 +105,7 @@ class _SimonCardState extends State<SimonCard> {
             ),
             SizedBox(height: 30.0),
             Text(
-              'MAJOR:',
+              'MAJOR / MINOR:',
               style: TextStyle(
                 color: Colors.grey,
                 letterSpacing: 2.0,
@@ -93,7 +113,7 @@ class _SimonCardState extends State<SimonCard> {
             ),
             SizedBox(height: 10.0),
             Text(
-              'Music Composition',
+              'Music / Computer Science',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2.0,
@@ -103,39 +123,34 @@ class _SimonCardState extends State<SimonCard> {
             ),
             SizedBox(height: 30.0),
             Text(
-              'MINOR:',
+              'CATS OR DOGS:',
               style: TextStyle(
                 color: Colors.grey,
                 letterSpacing: 2.0,
               ),
             ),
             SizedBox(height: 10.0),
-            Text(
-              'Computer Science',
-              style: TextStyle(
-                color: Colors.amberAccent[200],
-                letterSpacing: 2.0,
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 30.0),
-            Text(
-              'NUMBER OF TIMES PRESSED:',
-              style: TextStyle(
-                color: Colors.grey,
-                letterSpacing: 2.0,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              '$simonLevel',
-              style: TextStyle(
-                color: Colors.amberAccent[200],
-                letterSpacing: 2.0,
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              children: [
+                Text(
+                  petName,
+                  style: TextStyle(
+                    color: Colors.amberAccent[200],
+                    letterSpacing: 2.0,
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 10.0),
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 26.0,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(petReference),
+                    radius: 24.0,
+                  ),
+                )
+              ],
             ),
             SizedBox(height: 30.0),
             Row(
